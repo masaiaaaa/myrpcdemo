@@ -1,6 +1,6 @@
 package com.sai.version2.server;
 
-import com.sai.version1.common.User;
+import com.sai.version2.common.User;
 import com.sai.version2.service.UserService;
 
 import java.util.Random;
@@ -9,17 +9,17 @@ import java.util.UUID;
 /**
  * @Description: TODO
  * @author: sai
- * @date: 2022年06月19日 17:57
+ * @date: 2022年08月06日 11:31
  */
 public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUserId(Integer id) {
-        System.out.println("客户端查询了"+id+"的用户");
-        // 模拟从数据库中取用户的行为
+        System.out.println("客户端查询了"+id+"用户");
+        //模拟从数据库去用户
         Random random = new Random();
         User user = User.builder().userName(UUID.randomUUID().toString())
-                .id(id)
-                .sex(random.nextBoolean()).build();
+                .id(id).sex(random.nextBoolean())
+                .build();
         return user;
     }
 

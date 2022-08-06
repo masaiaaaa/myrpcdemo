@@ -11,25 +11,24 @@ import java.util.Random;
 /**
  * @Description: TODO
  * @author: sai
- * @date: 2022年06月19日 17:59
+ * @date: 2022年07月16日 18:40
  */
 public class RPCClient {
     public static void main(String[] args) {
         try {
-            //创建一个socket连接
+            //建立socket连接
             Socket socket = new Socket("127.0.0.1", 8899);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-            //传给服务器id
+            //给服务器传一个id
             objectOutputStream.writeInt(new Random().nextInt());
             objectOutputStream.flush();
-            //服务器返回查询数据
+            //服务端返回对应的对象
             User user = (User) objectInputStream.readObject();
-            System.out.println("服务器返回的user："+user);
+            System.out.println("服务端返回的user："+user);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("客户端启动失败");
         }
-
     }
 }

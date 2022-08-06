@@ -1,9 +1,9 @@
 package com.sai.version2.common;
 
 /**
- * @Description: 通用的response
+ * @Description: TODO
  * @author: sai
- * @date: 2022年06月20日 21:55
+ * @date: 2022年08月06日 11:22
  */
 
 import lombok.Builder;
@@ -19,18 +19,16 @@ import java.io.Serializable;
 @Data
 @Builder
 public class RPCResponse implements Serializable {
-    //状态码
+    //状态信息
     private int code;
     private String message;
-    //具体数据
+    //具体信息
     private Object data;
 
     public static RPCResponse success(Object data){
         return RPCResponse.builder().code(200).data(data).build();
     }
     public static RPCResponse fail(){
-        return RPCResponse.builder().code(500).data("服务器发生错误").build();
+        return RPCResponse.builder().code(500).message("服务器发生错误").build();
     }
-
-
 }
