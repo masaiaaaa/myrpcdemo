@@ -8,8 +8,8 @@ package com.sai.version4.server;
 
 
 
-import com.sai.version3.common.RPCRequest;
-import com.sai.version3.common.RPCResponse;
+import com.sai.version4.common.RPCRequest;
+import com.sai.version4.common.RPCResponse;
 import lombok.AllArgsConstructor;
 
 import java.io.IOException;

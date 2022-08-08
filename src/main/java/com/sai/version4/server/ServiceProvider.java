@@ -19,7 +19,7 @@ public class ServiceProvider {
     private Map<String, Object> interfaceProvider;
 
     public ServiceProvider(){
-        this.interfaceProvider = new HashMap<String, Object>();
+        this.interfaceProvider = new HashMap<>();
     }
 
     public void provideServiceInterface(Object service){

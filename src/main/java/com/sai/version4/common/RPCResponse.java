@@ -6,6 +6,7 @@ package com.sai.version4.common;
  * @date: 2022年08月06日 11:22
  */
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -18,6 +19,7 @@ import java.io.Serializable;
  */
 @Data
 @Builder
+@AllArgsConstructor
 public class RPCResponse implements Serializable {
     //状态信息
     private int code;

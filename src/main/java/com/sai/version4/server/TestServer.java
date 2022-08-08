@@ -1,10 +1,9 @@
 package com.sai.version4.server;
 
-import com.sai.version3.service.BlogService;
-import com.sai.version3.service.UserService;
+import com.sai.version4.service.BlogService;
+import com.sai.version4.service.UserService;
 
-import java.util.HashMap;
-import java.util.Map;
+
 
 /**
  * @Description: TODO
@@ -16,14 +15,14 @@ public class TestServer {
         UserService userService = new UserServiceImpl();
         BlogService blogService = new BlogServiceImpl();
 
-        Map<String, Object> serviceProvide = new HashMap<>();
-//        serviceProvide.put("com.sai.version3.service.UserService",userService);
-//        serviceProvide.put("com.sai.version3.service.BlogService",blogService);
-
+//        Map<String, Object> serviceProvide = new HashMap<>();
+//        serviceProvide.put("com.ganghuan.myRPCVersion2.service.UserService",userService);
+//        serviceProvide.put("com.ganghuan.myRPCVersion2.service.BlogService",blogService);
         ServiceProvider serviceProvider = new ServiceProvider();
         serviceProvider.provideServiceInterface(userService);
         serviceProvider.provideServiceInterface(blogService);
-        RPCServer server = new ThreadPoolRPCRPCServer(serviceProvider);
-        server.start(8899);
+
+        RPCServer RPCServer = new NettyRPCServer(serviceProvider);
+        RPCServer.start(8899);
     }
 }
