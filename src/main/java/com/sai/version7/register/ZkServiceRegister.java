@@ -1,5 +1,7 @@
-package com.sai.version6.register;
+package com.sai.version7.register;
 
+import com.sai.version7.loadBalance.LoadBalance;
+import com.sai.version7.loadBalance.RandomLoadBalance;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -19,6 +21,8 @@ public class ZkServiceRegister implements ServiceRegister{
     private CuratorFramework client;
     //zk根路径节点
     private static final String ROOT_PATH = "MyRPC";
+    //初始化负载均衡器，这里使用随机
+    private LoadBalance loadBalance = new RandomLoadBalance();
 
     public ZkServiceRegister(){
         RetryPolicy policy = new ExponentialBackoffRetry(1000, 3);
@@ -40,13 +44,14 @@ public class ZkServiceRegister implements ServiceRegister{
                         .creatingParentsIfNeeded()
                         .withMode(CreateMode.PERSISTENT)
                         .forPath("/" + serviceName);
-                //路径地址，一个/代表一个节点
-                String path = "/" + serviceName + "/" + getServiceAddress(serverAddress);
-                // 临时节点，服务器下线就删除节点
-                client.create().creatingParentsIfNeeded()
-                        .withMode(CreateMode.EPHEMERAL)
-                        .forPath(path);
             }
+            //路径地址，一个/代表一个节点
+            String path = "/" + serviceName + "/" + getServiceAddress(serverAddress);
+            // 临时节点，服务器下线就删除节点
+            client.create()
+                    .creatingParentsIfNeeded()
+                    .withMode(CreateMode.EPHEMERAL)
+                    .forPath(path);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("此服务已存在");
@@ -58,11 +63,10 @@ public class ZkServiceRegister implements ServiceRegister{
     public InetSocketAddress serviceDiscovery(String serviceName) {
 
         try {
-            List<String> strings = client.getChildren()
+            List<String> services = client.getChildren()
                     .forPath("/" + serviceName);
-            //默认用第一个
-            String string = strings.get(0);
-            return parseAddress(string);
+            String service = loadBalance.balance(services);
+            return parseAddress(service);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

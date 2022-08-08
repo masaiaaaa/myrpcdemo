@@ -1,9 +1,9 @@
-package com.sai.version6.codec;
+package com.sai.version7.codec;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.sai.version6.common.RPCRequest;
-import com.sai.version6.common.RPCResponse;
+import com.sai.version7.common.RPCRequest;
+import com.sai.version7.common.RPCResponse;
 
 /**
  * @Description: TODO

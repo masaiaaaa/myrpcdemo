@@ -1,4 +1,4 @@
-package com.sai.version6.codec;
+package com.sai.version7.codec;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

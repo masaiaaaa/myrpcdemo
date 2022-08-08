@@ -1,4 +1,4 @@
-package com.sai.version6.codec;
+package com.sai.version7.codec;
 
 /**
  * @Description: TODO
@@ -6,8 +6,8 @@ package com.sai.version6.codec;
  * @date: 2022年08月08日 20:26
  */
 
-import com.sai.version6.common.RPCRequest;
-import com.sai.version6.common.RPCResponse;
+import com.sai.version7.common.RPCRequest;
+import com.sai.version7.common.RPCResponse;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;

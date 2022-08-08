@@ -1,4 +1,4 @@
-package com.sai.version6.register;
+package com.sai.version7.register;
 
 import java.net.InetSocketAddress;
 
